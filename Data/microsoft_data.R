@@ -4,7 +4,20 @@ library(DescTools)
 library(RVAideMemoire)
 library(np)
 
-# Load data (replace with your file path if needed)
+# Load and clean data (replace with your file path if needed)
+data <- read.csv("cat_and_dog.csv")
+data <- na.omit(data)
+
+# Function to normalize data
+normalize <- function(column) {
+  return((column - mean(column, na.rm = TRUE)) / sd(column, na.rm = TRUE))
+# Load necessary libraries
+library(tseries)
+library(DescTools)
+library(RVAideMemoire)
+library(np)
+
+# Load and clean data (replace with your file path if needed)
 data <- read.csv("cat_and_dog.csv")
 data <- na.omit(data)
 
@@ -151,4 +164,70 @@ cat_pitch_model <- kernel_regression_with_plot(data$cat_pitch, predictors, respo
 # Example for dog_pitch as response
 dog_pitch_model <- kernel_regression_with_plot(data$dog_pitch, predictors, response_name = "dog_pitch")
 
-# You can repeat the kernel regression for other response variables as needed
+# Create lagged variables (lags 1 to 4)
+max_lag <- 4
+variables <- c("Close", "Open", "High", "Low", "Volume")
+
+for (var in variables) {
+  for (lag in 1:max_lag) {
+    lagged_var_name <- paste0(var, "_lag", lag)
+    data[[lagged_var_name]] <- c(rep(NA, lag), data[[var]][1:(nrow(data) - lag)])
+  }
+}
+
+# Remove rows with NA values due to lagging
+data <- data[(max_lag + 1):nrow(data), ]
+
+# Split the data into training (first 80%) and testing (last 20%) sets
+n <- nrow(data)
+train_indices <- 1:floor(0.8 * n)
+test_indices <- (floor(0.8 * n) + 1):n
+
+train_data <- data[train_indices, ]
+test_data <- data[test_indices, ]
+
+# Function for kernel regression predicting the next value
+kernel_regression_next_value <- function(response_name, data_train, data_test) {
+  # Predictors are lagged variables of all variables excluding the lags of the response variable
+  lagged_predictors <- names(data_train)[grepl("_lag[1-4]$", names(data_train))]
+  response_lagged_vars <- paste0(response_name, "_lag", 1:max_lag)
+  predictors <- setdiff(lagged_predictors, response_lagged_vars)
+  
+  # Create formula for regression
+  predictors_str <- paste(predictors, collapse = "+")
+  formula_str <- paste(response_name, "~", predictors_str)
+  formula <- as.formula(formula_str)
+  
+  # Fit kernel regression model
+  model <- npreg(formula, data = data_train)
+  
+  # Predict on test data
+  predicted_values <- predict(model, newdata = data_test)
+  
+  # Actual values
+  actual_values <- data_test[[response_name]]
+  
+  # Calculate statistics
+  mse <- mean((actual_values - predicted_values)^2)
+  r_squared <- 1 - (sum((actual_values - predicted_values)^2) / sum((actual_values - mean(actual_values))^2))
+  
+  # Print statistics
+  cat("Kernel Regression for", response_name, "\n")
+  cat("Mean Squared Error:", mse, "\n")
+  cat("R-squared:", r_squared, "\n\n")
+  
+  # Plot actual vs. predicted values
+  plot(actual_values, type = "l", main = paste("Kernel Regression for", response_name),
+       xlab = "Index", ylab = response_name)
+  lines(predicted_values, col = "blue")
+  legend("topright", legend = c("Actual", "Predicted"), col = c("black", "blue"), lty = 1)
+  
+  return(model)
+}
+
+# Apply kernel regression for each variable as the response
+models <- list()
+
+for (var in variables) {
+  models[[var]] <- kernel_regression_next_value(var, train_data, test_data)
+}
