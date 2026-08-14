@@ -1,6 +1,6 @@
 # Presentation
 
-Slide deck summarizing the key findings of the Microsoft Stock Data Analysis project — Group 7 (Shivam, Chhavi, Palak, Manav, Sreekanth).
+Slide deck summarizing the key findings of the Microsoft Stock Data Analysis project.
 
 ## Contents
 
