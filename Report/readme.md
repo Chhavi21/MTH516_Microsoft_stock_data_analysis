@@ -26,5 +26,5 @@ Open `report.Rmd` in RStudio, make sure `Microsoft_Stock.csv` and `cat_and_dog.c
 
 ## Read online
 
-<!-- Optional: link a hosted/rendered version, e.g. RPubs or GitHub Pages -->
-[Read the full report (PDF)](https://docs.google.com/presentation/d/1yyYT6Wf2hGscNIkstiZvm-ZQwCGkpu19/edit?usp=sharing&ouid=101128664914796064256&rtpof=true&sd=true)
+<!-- Optional: link a hosted/rendered version, e.g. RPubs or GitHub Pages
+[Read the full report (PDF)](./report.pdf) -->
