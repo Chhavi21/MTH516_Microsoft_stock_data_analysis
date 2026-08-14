@@ -2,7 +2,7 @@
 A non-parametric statistical analysis of Microsoft's historical stock data — exploring price trends, randomness, and volume patterns — with a complementary analysis on an unrelated audio-feature dataset (cats vs. dogs) to validate the methodology.
 
 ## 📄 Read the Report / View the Slides
-### [Open the Full Report (PDF)](https://drive.google.com/drive/folders/1w6cgtKQ7u49pAkOJKC1egjF5Fs1_d8gx) · [Open the Presentation (PDF)](https://docs.google.com/presentation/d/1yyYT6Wf2hGscNIkstiZvm-ZQwCGkpu19/edit?slide=id.p1#slide=id.p1)
+### [Open the Full Report (PDF)](https://drive.google.com/file/d/1l4VsW32-nVY2LzurblCdq1u_IiW_cD-y/view?usp=sharing) · [Open the Presentation (PDF)](https://docs.google.com/presentation/d/1yyYT6Wf2hGscNIkstiZvm-ZQwCGkpu19/edit?slide=id.p1#slide=id.p1)
 
 <!-- If you host either one online later (RPubs, Google Slides, GitHub Pages), swap the links above -->
 
