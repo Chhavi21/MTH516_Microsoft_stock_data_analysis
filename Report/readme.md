@@ -24,7 +24,7 @@ The full written report for the Microsoft Stock Data Analysis project.
 
 Open `report.Rmd` in RStudio, make sure `Microsoft_Stock.csv` and `cat_and_dog.csv` (from [`../data`](../data)) are in the working directory, install the packages listed in the [root README](../README.md), and knit to PDF.
 
-## Read online
+<!-- ## Read online
 
-<!-- Optional: link a hosted/rendered version, e.g. RPubs or GitHub Pages
+Optional: link a hosted/rendered version, e.g. RPubs or GitHub Pages
 [Read the full report (PDF)](./report.pdf) -->
