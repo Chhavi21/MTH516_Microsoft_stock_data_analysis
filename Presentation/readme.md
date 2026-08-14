@@ -20,7 +20,7 @@ Slide deck summarizing the key findings of the Microsoft Stock Data Analysis pro
 <!-- Add a link to a hosted version, e.g. Google Slides, Canva, or SlideShare
 [View the slides](./Microsoft_Stock_Data_Analysis_Slides.pdf) -->
 
-Example once you have a hosted link:
+Link to a hosted version:
 🔗 [Open in Google Slides](https://docs.google.com/presentation/d/1yyYT6Wf2hGscNIkstiZvm-ZQwCGkpu19/edit?usp=sharing&ouid=101128664914796064256&rtpof=true&sd=true)
 
 
